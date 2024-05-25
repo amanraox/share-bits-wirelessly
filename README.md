@@ -1,4 +1,4 @@
-# qr-file-share
+# share bits wirelessly
 Share small files from an offline source using only a QR code!
 
 ## Why?
