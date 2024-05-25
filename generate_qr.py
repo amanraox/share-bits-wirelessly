@@ -4,7 +4,7 @@ import qrcode
 import urllib.parse
 
 # Change this if you want to use decoding file hosted elsewhere
-WEB_URL_PREFIX = "https://amanraox.github.io/qr-file-share/dl.html"
+WEB_URL_PREFIX = "https://amanraox.github.io/share-bits-wirelessly/dl.html"
 
 if len(sys.argv) > 1:
     in_filename = sys.argv[1]
