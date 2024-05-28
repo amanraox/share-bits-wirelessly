@@ -1,4 +1,7 @@
 # share bits wirelessly
+
+![ss](/asset/Screenshot_2024-05-28_21-33-01.jpg.jpg)
+
 Share small files from an offline source using only a QR code!
 
 ## Why?
