@@ -20,3 +20,24 @@ To generate one of these QR codes, you can either:
 2. use the included [python script](./generate_qr.py).
    1. Install the dependencies using `pip install -r requirements.txt`
    2. Run using `python3 generate_pr.py input_file.txt`. The QR code png will be generated with the same filename (+ `.png`) by default, or you can explicitly pass in an alternate output filename as a second argument.
+
+
+  # CONTRIBUTING 
+
+We welcome contributions to SHare Bits Wirelessly! To contribute:
+
+1. Fork the repository 🍴
+2. Create a new branch (`git checkout -b feature/your-feature`) 🌱
+3. Make your changes ✨
+4. Commit and push your changes 🚀
+5. Create a pull request 🔄
+
+## Contributors
+
+A heartfelt thank you to the following individuals for their valuable contributions to this project. Your support and dedication are greatly appreciated:
+
+<a href="https://github.com/amanraox/share-bits-wirelessly/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=amanraox/share-bits-wirelessly" />
+</a>
+
+<br>
