@@ -26,7 +26,7 @@ To generate one of these QR codes, you can either:
 
 We welcome contributions to SHare Bits Wirelessly! To contribute:
 
-1. Fork the repository 🍴
+1. Fork and Star the repository 🍴
 2. Create a new branch (`git checkout -b feature/your-feature`) 🌱
 3. Make your changes ✨
 4. Commit and push your changes 🚀
