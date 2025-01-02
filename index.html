@@ -6,16 +6,22 @@
     <meta charset="UTF-8">
     <title>Create QR</title>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css"> 
 </head>
 
 <body>
+    <header>
+        <h1>Welcome to Share-Bit-Wirelessly</h1>
+        <p>Generate QR codes to transfer small files securely and easily.</p>
+    </header>
+
     <div>
         <p>
             Use this tool to generate a QR code to transfer a small file (< 2kb). The file is encoded into the QR code
                 itself and <b>is not uploaded to any server</b>.
                 <br><br>The file's data never leaves your computer. (Though this site's server can technically see the
                 file's name)
-                <br><br>for testing purpose you can download any small file from here <a href="https://drive.google.com/drive/folders/1EBLsp5UrM1KFNgGKQUEALKo6uOVpUlaU?usp=sharing">here</a>
+                <br><br>for testing purpose you can download any small file from <a href="https://drive.google.com/drive/folders/1EBLsp5UrM1KFNgGKQUEALKo6uOVpUlaU?usp=sharing">here</a>
                 <br><br>To generate one of these QR codes without needing to load this page from the internet, you can
                 either:
                 <ul>
@@ -58,6 +64,10 @@
             }
         });
     </script>
+
+<footer>
+    <p>&copy; 2024 Aman Umrao. All rights reserved.</p>
+</footer>
 
 </body>
 
