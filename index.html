@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-
         .canvas-bg {
             position: fixed;
             top: 0;
@@ -76,16 +75,15 @@
 
         .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 4rem auto;
             padding: 0 2rem;
             perspective: 1000px;
         }
 
         header {
-            grid-column: 1 / -1;
             text-align: center;
             transform-style: preserve-3d;
             animation: float 6s ease-in-out infinite;
@@ -123,7 +121,8 @@
 
         h1 {
             font-size: 3.5rem;
-            margin: 0;
+            margin-top: 0;
+            margin-bottom: 40px;
             background: linear-gradient(135deg, var(--primary-color), #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -148,12 +147,13 @@
         .input-section {
             display: flex;
             flex-direction: column;
+            height: fit-content;
             gap: 1.5rem;
         }
 
         .file-input-wrapper {
             position: relative;
-            height: 200px;
+            height: 300px;
             border: 2px dashed var(--primary-color);
             border-radius: 16px;
             display: flex;
@@ -180,6 +180,7 @@
         }
 
         .button {
+            margin-top: 20px;
             background: linear-gradient(135deg, var(--primary-color), #a855f7);
             color: white;
             padding: 1rem 2rem;
@@ -208,13 +209,13 @@
             left: 100%;
         }
 
-        #qrcode {
+        .qrcode {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 256px;
             animation: fadeIn 0.5s ease-out;
-        }
+        } 
 
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.9); }
@@ -222,7 +223,6 @@
         }
 
         footer {
-            grid-column: 1 / -1;
             text-align: center;
             padding: 2rem;
             background: var(--glass-bg);
@@ -246,6 +246,24 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .download-btn {
+            padding: 1rem 2rem;
+            background-color:rgb(21, 112, 48);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn:hover {
+            background-color: rgb(29, 158, 68);
+        }
     </style>
 </head>
 <body>
@@ -254,6 +272,17 @@
     <div class="container">
         <header>
             <h1>QR Code File Transfer</h1>
+            <div class="card input-section">
+                <div class="file-input-wrapper">
+                    <input type="file" id="fileInput" accept="*">
+                    <div class="upload-icon">📁</div>
+                    <p>Drop your file here or click to browse</p>
+                </div>
+                <button id="encodeButton" class="button">Generate QR Code</button>
+                <div id="qrcode"></div>
+                <button id="downloadQR" class="download-btn">Download Your QR</button>
+            </div>
+          
             <div class="info-text">
                 <p>
                     Use this tool to generate a QR code to transfer a small file (< 2kb). The file is encoded into the QR code
@@ -272,20 +301,9 @@
             </div>
         </header>
         
-        <div class="card input-section">
-            <div class="file-input-wrapper">
-                <input type="file" id="fileInput" accept="*">
-                <div class="upload-icon">📁</div>
-                <p>Drop your file here or click to browse</p>
-            </div>
-            <button id="encodeButton" class="button">Generate QR Code</button>
-        </div>
-        
-        <div class="card">
-            <div id="qrcode"></div>
-        </div>
+      
 
-        <footer class="card" style="grid-column: 1 / -1; margin-top: 2rem; text-align: center;">
+        <footer class="card">
             <div class="footer-content">
                 <p>🚀 Want to contribute? Check out the project on <br>
                     <a href="https://github.com/amanraox/share-bits-wirelessly" target="_blank" 
@@ -434,6 +452,19 @@
             const file = dt.files[0];
             document.getElementById('fileInput').files = dt.files;
         }
+
+        document.getElementById('downloadQR').addEventListener('click', function() {
+            const qrCodeElement = document.getElementById('qrcode').querySelector('img');
+            if (qrCodeElement) {
+                const qrCodeURL = qrCodeElement.src;
+                const link = document.createElement('a');
+                link.href = qrCodeURL;
+                link.download = 'qrcode.png';
+                link.click();
+            } else {
+                alert('QR code not generated yet.');
+            }
+        });
     </script>
 </body>
 </html>
