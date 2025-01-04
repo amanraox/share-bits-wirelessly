@@ -1,277 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Generate QR codes to transfer small files securely without uploading to any server.">
-    <title>Create QR - Modern Design</title>
+    <meta name="description"
+        content="Generate QR codes to transfer small files securely without uploading to any server.">
+    <title>ØR-Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/framer-motion/dist/framer-motion.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-
-        .canvas-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        :root {
-            --primary-color: #6366f1;
-            --secondary-color: #1e1e1e;
-            --background-dark: #0a0a0a;
-            --background-light: #ffffff;
-            --text-dark: #ffffff;
-            --text-light: #000000;
-            --accent-glow: rgba(99, 102, 241, 0.2);
-            --glass-bg-dark: rgba(255, 255, 255, 0.1);
-            --glass-bg-light: rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] {
-            --background: var(--background-dark);
-            --text: var(--text-dark);
-            --glass-bg: var(--glass-bg-dark);
-        }
-
-        [data-theme="light"] {
-            --background: var(--background-light);
-            --text: var(--text-light);
-            --glass-bg: var(--glass-bg-light);
-        }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: var(--background);
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--primary-color);
-            color: var(--text-dark);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transition: transform 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-            perspective: 1000px;
-        }
-
-        header {
-            grid-column: 1 / -1;
-            text-align: center;
-            transform-style: preserve-3d;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .info-text {
-            max-width: 800px;
-            margin: 2rem auto;
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        .info-text a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .info-text a:hover {
-            text-decoration: underline;
-        }
-
-        .info-text ul {
-            margin-top: 1rem;
-            padding-left: 2rem;
-        }
-
-        .info-text li {
-            margin-bottom: 0.5rem;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotateX(2deg); }
-            50% { transform: translateY(-20px) rotateX(-2deg); }
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin: 0;
-            background: linear-gradient(135deg, var(--primary-color), #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px var(--accent-glow);
-        }
-
-        .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 48px rgba(99, 102, 241, 0.2);
-        }
-
-        .input-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .file-input-wrapper {
-            position: relative;
-            height: 200px;
-            border: 2px dashed var(--primary-color);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .file-input-wrapper:hover {
-            border-color: #a855f7;
-        }
-
-        #fileInput {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-        }
-
-        .button {
-            background: linear-gradient(135deg, var(--primary-color), #a855f7);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .button:hover::before {
-            left: 100%;
-        }
-
-        #qrcode {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 256px;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        footer {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 2rem;
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            margin-top: 2rem;
-        }
-
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: #a855f7;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
+
 <body>
+
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="logo-dark.png" alt="Logo" id="logo">
+        </div>
+
+    </nav>
+
     <button class="theme-toggle" id="themeToggle">🌙</button>
+
     <canvas class="canvas-bg" id="bgCanvas"></canvas>
     <div class="container">
         <header>
             <h1>QR Code File Transfer</h1>
             <div class="info-text">
                 <p>
-                    Use this tool to generate a QR code to transfer a small file (< 2kb). The file is encoded into the QR code
-                    itself and <b>is not uploaded to any server</b>.
-                    <br><br>The file's data never leaves your computer. (Though this site's server can technically see the
-                    file's name)
-                    <br><br>for testing purpose you can download any small file from <a href="https://drive.google.com/drive/folders/1EBLsp5UrM1KFNgGKQUEALKo6uOVpUlaU?usp=sharing">here</a>
-                    <br><br>To generate one of these QR codes without needing to load this page from the internet, you can
-                    either:
-                    <ul>
-                        <li>save it to your computer (File -> Save As -> Webpage, Complete)</li>
-                        <li>use the Python script in the <a href="https://github.com/amanraox/share-bits-wirelessly">GitHub
-                                repository</a></li>
-                    </ul>
+                    Use this tool to generate a QR code to transfer a small file (< 2kb). The file is encoded into the
+                        QR code itself and <b>is not uploaded to any server</b>.
+                        <br><br>The file's data never leaves your computer. (Though this site's server can technically
+                        see the
+                        file's name)
+                        <br><br>for testing purpose you can download any small file from <a
+                            href="https://drive.google.com/drive/folders/1EBLsp5UrM1KFNgGKQUEALKo6uOVpUlaU?usp=sharing">here</a>
+                        <br><br>To generate one of these QR codes without needing to load this page from the internet,
+                        you can
+                        either:
+                        <ul>
+                            <li>save it to your computer (File -> Save As -> Webpage, Complete)</li>
+                            <li>use the Python script in the <a
+                                    href="https://github.com/amanraox/share-bits-wirelessly">GitHub
+                                    repository</a></li>
+                        </ul>
                 </p>
             </div>
         </header>
-        
+
         <div class="card input-section">
             <div class="file-input-wrapper">
                 <input type="file" id="fileInput" accept="*">
@@ -280,7 +60,7 @@
             </div>
             <button id="encodeButton" class="button">Generate QR Code</button>
         </div>
-        
+
         <div class="card">
             <div id="qrcode"></div>
         </div>
@@ -296,10 +76,11 @@
                         GitHub
                     </a>
                 </p>
+                <p>&copy; 2025 QR Code File Transfer | All rights reserved.</p>
             </div>
         </footer>
     </div>
-    
+
     <script>
         // Interactive Background
         const canvas = document.getElementById('bgCanvas');
@@ -314,7 +95,9 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', newTheme);
             themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-            
+            // Change the logo based on theme
+            const logo = document.getElementById('logo');
+            logo.src = newTheme === 'dark' ? 'logo-dark.png' : 'logo-light.png';
             // Update QR code colors if it exists
             const qrCode = document.getElementById('qrcode');
             if (qrCode.firstChild) {
@@ -342,7 +125,7 @@
         const particlesCount = 1000;
         const positions = new Float32Array(particlesCount * 3);
 
-        for(let i = 0; i < particlesCount * 3; i++) {
+        for (let i = 0; i < particlesCount * 3; i++) {
             positions[i] = (Math.random() - 0.5) * 10;
         }
 
@@ -376,7 +159,7 @@
             const b64 = encodeURIComponent(dataUrl.split(',')[1]);
             const url = `${WEB_URL_PREFIX}?f=${filename}#${b64}`;
             document.getElementById('qrcode').innerHTML = '';
-            
+
             const isDarkTheme = html.getAttribute('data-theme') === 'dark';
             new QRCode(document.getElementById('qrcode'), {
                 text: url,
@@ -387,7 +170,7 @@
             });
         }
 
-        document.getElementById('encodeButton').addEventListener('click', function() {
+        document.getElementById('encodeButton').addEventListener('click', function () {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];
             if (file) {
@@ -436,4 +219,5 @@
         }
     </script>
 </body>
+
 </html>
