@@ -261,9 +261,7 @@ footer a:hover {
     align-items: center;
     padding: 0.2rem 0rem;
     background: rgba(0, 0, 0, 0);
-    /* Transparent with slight opacity */
     backdrop-filter: blur(10px);
-    /* Blurred glass effect */
     z-index: 1000;
 }
 
@@ -272,7 +270,6 @@ footer a:hover {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    /* Space between logo and text */
     padding-left: 25px;
 }
 
@@ -280,37 +277,29 @@ footer a:hover {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    /* Rounded logo */
 }
 
 /* Theme Toggle Button */
 
 .theme-toggle {
     background: var(--primary-color, #6366f1);
-    /* Primary color or fallback */
     color: #ffffff;
-    /* White icon color */
     width: 40px;
     height: 40px;
     border: none;
     border-radius: 50%;
-    /* Circular button */
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    /* Icon size */
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    /* Subtle shadow */
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .theme-toggle:hover {
     transform: scale(1.1);
-    /* Slight zoom effect */
     background-color: #4f46e5;
-    /* Darker hover color */
 }
 
 /* Responsive Adjustments */
@@ -331,31 +320,4 @@ footer a:hover {
         font-size: 1rem;
         margin-top: -8px;
     }
-}
-
-.footer2 .connect {
-    margin-top: 10px;
-}
-
-.footer2 .connect p {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.footer2 .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.footer2 .social-icons a img {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.footer2 .social-icons a img:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
