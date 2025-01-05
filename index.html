@@ -264,6 +264,24 @@
         .download-btn:hover {
             background-color: rgb(29, 158, 68);
         }
+
+        .share-btn {
+            padding: 1rem 2rem;
+            background-color:rgba(242, 16, 20, 0.788);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .share-btn:hover {
+            background-color: rgba(243, 24, 24, 0.947);
+        }
     </style>
 </head>
 <body>
@@ -281,6 +299,7 @@
                 <button id="encodeButton" class="button">Generate QR Code</button>
                 <div id="qrcode"></div>
                 <button id="downloadQR" class="download-btn">Download Your QR</button>
+                <button id="shareQR" class="share-btn">Share Your QR</button>
             </div>
           
             <div class="info-text">
