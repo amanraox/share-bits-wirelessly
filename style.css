@@ -157,6 +157,13 @@ h1 {
     justify-content: center;
     overflow: hidden;
 }
+.file-name-display {
+    margin-top: 0.5rem;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+}
 
 .file-input-wrapper:hover {
     border-color: #a855f7;
