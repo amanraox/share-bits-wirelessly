@@ -179,8 +179,8 @@
             const isDarkTheme = html.getAttribute('data-theme') === 'dark';
             new QRCode(document.getElementById('qrcode'), {
                 text: url,
-                width: 200,
-                height: 200,
+                width: 256,
+                height: 256,
                 colorDark: isDarkTheme ? "#ffffff" : "#000000",
                 colorLight: isDarkTheme ? "#000000" : "#ffffff",
             });
