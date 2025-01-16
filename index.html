@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/framer-motion/dist/framer-motion.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.qrcode@1.0.0/jquery.qrcode.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
@@ -63,6 +65,7 @@
 
         <div class="card">
             <div id="qrcode"></div>
+            <button id="downloadButton" class="button" style="display:none;">Download QR Code</button>
         </div>
 
         <footer class="card" style="grid-column: 1 / -1; margin-top: 2rem; text-align: center;">
@@ -151,6 +154,18 @@
         // File handling and QR generation
         const WEB_URL_PREFIX = "https://amanraox.github.io/share-bits-wirelessly/dl.html";
 
+        document.getElementById('encodeButton').addEventListener('click', function () {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => onFileLoaded(file.name, e.target.result);
+                reader.readAsDataURL(file);
+            } else {
+                alert("Please select a file first.");
+            }
+        });
+
         function onFileLoaded(filename, dataUrl) {
             if (dataUrl.length + filename.length > 2000) {
                 alert("File (and/or file name) is too large for QR code!");
@@ -163,24 +178,28 @@
             const isDarkTheme = html.getAttribute('data-theme') === 'dark';
             new QRCode(document.getElementById('qrcode'), {
                 text: url,
-                width: 256,
-                height: 256,
+                width: 200,
+                height: 200,
                 colorDark: isDarkTheme ? "#ffffff" : "#000000",
                 colorLight: isDarkTheme ? "#000000" : "#ffffff",
             });
-        }
 
-        document.getElementById('encodeButton').addEventListener('click', function () {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => onFileLoaded(file.name, e.target.result);
-                reader.readAsDataURL(file);
+            const downloadButton = document.getElementById('downloadButton');
+            downloadButton.style.display = 'inline-block';
+
+            // Download functionality
+            downloadButton.addEventListener('click', function () {
+            const qrCanvas = document.querySelector('#qrcode canvas'); // Getting the canvas element
+            if (qrCanvas) {
+                const link = document.createElement('a');
+                link.href = qrCanvas.toDataURL();
+                link.download = `${filename}-qrcode.png`;
+                link.click();
             } else {
-                alert("Please select a file first.");
+                alert("QR Code is not generated yet.");
             }
         });
+        }
 
         // Drag and drop handling
         const dropZone = document.querySelector('.file-input-wrapper');
