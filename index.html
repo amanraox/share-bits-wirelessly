@@ -60,6 +60,7 @@
                 <div class="upload-icon">📁</div>
                 <p>Drop your file here or click to browse</p>
             </div>
+            <p id="fileNameDisplay" class="file-name-display"></p>
             <button id="encodeButton" class="button">Generate QR Code</button>
         </div>
 
@@ -168,7 +169,7 @@
 
         function onFileLoaded(filename, dataUrl) {
             if (dataUrl.length + filename.length > 2000) {
-                alert("File (and/or file name) is too large for QR code!");
+                alert(`File ${filename} is too large for QR code!`);
                 return;
             }
             const b64 = encodeURIComponent(dataUrl.split(',')[1]);
@@ -231,10 +232,25 @@
 
         dropZone.addEventListener('drop', handleDrop, false);
 
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+
+
+        fileInput.addEventListener('change', updateFileNameDisplay);
+
+        function updateFileNameDisplay() {
+            const file = fileInput.files[0];
+            if (file) {
+                fileNameDisplay.textContent = `Uploaded: ${file.name}`;
+            } else {
+                fileNameDisplay.textContent = ''; // Clear if no file is selected
+            }
+        }
         function handleDrop(e) {
             const dt = e.dataTransfer;
             const file = dt.files[0];
             document.getElementById('fileInput').files = dt.files;
+            // adding
+            updateFileNameDisplay()
         }
     </script>
 </body>
