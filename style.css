@@ -127,6 +127,9 @@ h1 {
 }
 
 .card {
+    display: flex;
+    flex-direction: column;     /* Ensures elements are stacked vertically */
+    gap: 2rem;      /* Adds space between elements inside the card */
     background: var(--glass-bg);
     backdrop-filter: blur(12px);
     border-radius: 24px;
@@ -183,6 +186,7 @@ h1 {
 }
 
 .button {
+    width: 100%;
     background: linear-gradient(135deg, var(--primary-color), #a855f7);
     color: white;
     padding: 1rem 2rem;
