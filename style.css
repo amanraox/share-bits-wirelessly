@@ -238,21 +238,58 @@ h1 {
 footer {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 2rem;
-    background: var(--glass-bg);
+    padding: 2rem 0;
+    background: linear-gradient(to right, #1e1e1e, #121212);
     backdrop-filter: blur(12px);
     border-radius: 16px;
     margin-top: 2rem;
 }
 
+.footer {
+    width: 100%;
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    bottom: 0;
+}
+
 footer a {
-    color: var(--primary-color);
+    color: #ffcc00;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: 0.3s ease-in-out;
 }
 
 footer a:hover {
-    color: #a855f7;
+    color: #ffd700;
+}
+
+.footer-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.footer-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.github-link {
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.github-link:hover {
+    transform: scale(1.05);
+}
+
+.footer-rights {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 10px;
 }
 
 @media (max-width: 768px) {
