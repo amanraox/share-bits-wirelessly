@@ -243,12 +243,45 @@ footer {
     backdrop-filter: blur(12px);
     border-radius: 16px;
     margin-top: 2rem;
+   
+}
+.footer-content{
+    max-width: 1200px;
+    margin:0 auto;
+}
+.iwoc-text{
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+.github{
+    margin-top: 15px;
+
 }
 
 footer a {
     color: var(--primary-color);
     text-decoration: none;
     transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.footer-card {
+    display: flex;
+    flex-direction:column;     /* Ensures elements are stacked vertically */
+    gap: 2rem;      /* Adds space between elements inside the card */
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+   
+}
+
+.footer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 48px rgba(99, 102, 241, 0.2);
 }
 
 footer a:hover {
