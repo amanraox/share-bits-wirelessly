@@ -313,6 +313,27 @@ footer a:hover {
     background-color: #4f46e5;
 }
 
+#scrollToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 0px;
+    right: -80px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #6366f1;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #4f46e5;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .navbar {
@@ -330,5 +351,11 @@ footer a:hover {
         height: 35px;
         font-size: 1rem;
         margin-top: -8px;
+    }
+
+    #scrollToTopBtn {
+        bottom: 10px;
+        right: 40px;
+        padding: 10px;
     }
 }
