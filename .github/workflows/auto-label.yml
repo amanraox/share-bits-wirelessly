@@ -25,7 +25,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue.number,
-              labels: ['swoc','swoc2025','good first issue']
+              labels: ['IWOC2025','good first issue']
             });
             const addLabel = async (label) => {
               await github.rest.issues.addLabels({
