@@ -187,6 +187,41 @@ footer {
 .footer-bottom p {
     margin: 0;
 }
+
+[data-theme="light"] .footer-container {
+    background-color: #f0f0f0; /* Greyish white */
+    color: #333; /* Dark text for contrast */
+}
+[data-theme="light"] .footer-bottom {
+    color: #000;
+    font-weight:600; /* Black text */
+}
+
+[data-theme="light"] .footer-bottom .icon {
+    color: red; /* Keeping the heart icon red */
+}
+[data-theme="light"] h4 {
+    color: black;
+    font-weight: 600;;
+}
+
+[data-theme="light"] .quick-links a,
+[data-theme="light"] .contact-item a,
+[data-theme="light"] .contact-item a,
+[data-theme="light"] .social-icon {
+    color: #000; /* Black links */
+}
+
+[data-theme="light"] .quick-links a:hover,
+[data-theme="light"] .contact-item a:hover,
+[data-theme="light"] .social-icon:hover {
+    color: #353434; /* Slightly darker on hover */
+}
+[data-theme="light"] h3 {
+    color: black;
+    font-weight: 600git add .; /* Greyish white */
+}
+
 @media (min-width: 768px) {
     .footer-grid {
         grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
