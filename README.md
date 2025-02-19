@@ -53,6 +53,29 @@ The process for generating a QR code is clear. However, for retrieving files, no
 
 If additional steps are needed, or you face issues, feel free to raise a question or open an issue in the repository!
 
+## Project Structure
+
+```bash
+amanraox-share-bits-wirelessly/
+    ├── README.md
+    ├── LICENSE
+    ├── dl.html
+    ├── generate_qr.py
+    ├── index.html
+    ├── requirements.txt
+    ├── style.css
+    ├── asset/
+    └── .github/
+        └── workflows/
+            ├── auto-label.yml
+            ├── detect-duplicate.yml
+            ├── issue-close-open.yml
+            ├── pr-checker.yml
+            ├── pr-merge.yml
+            ├── pr-raise.yml Latest
+            └── static.yml
+```
+
 ## CONTRIBUTING 
 
 We welcome contributions to SHare Bits Wirelessly! To contribute:
