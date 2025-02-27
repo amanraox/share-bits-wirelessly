@@ -175,9 +175,11 @@
 
         function onFileLoaded(filename, dataUrl) {
             if (dataUrl.length + filename.length > 2000) {
-                alert(`File ${filename} is too large for QR code!`);
-                return;
-            }
+                    const dialog = document.getElementById("fileSizeDialog");
+                    document.getElementById("dialogText").innerText = `File ${filename} is too large for the QR code!`;
+                    dialog.showModal(); // Opens the dialog
+                }
+
             const b64 = encodeURIComponent(dataUrl.split(',')[1]);
             const url = `${WEB_URL_PREFIX}?f=${filename}#${b64}`;
             document.getElementById('qrcode').innerHTML = '';
@@ -272,6 +274,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
+    <dialog id="fileSizeDialog">
+        <p id="dialogText"></p>
+        <button id="closeDialogBtn" onclick="document.getElementById('fileSizeDialog').close()">OK</button>
+    </dialog>
+    
+    
 </body>
 
 </html>

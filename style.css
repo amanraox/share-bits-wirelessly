@@ -489,3 +489,27 @@ footer a:hover {
     background-color: #0056b3;
     transform: scale(1.03);
 }
+dialog {
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#closeDialogBtn {
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#closeDialogBtn:hover {
+    background-color:  #3c3fef;
+}
